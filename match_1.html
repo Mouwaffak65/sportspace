@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FootSpace - Match en Direct</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Variables et reset */
+        :root {
+            --primary-color: #1e88e5;
+            --secondary-color: #e53935;
+            --dark-color: #121212;
+            --light-color: #f5f5f5;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--dark-color);
+            color: var(--light-color);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border-bottom: 1px solid #333;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .logo i {
+            color: var(--primary-color);
+        }
+
+        .back-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--primary-color);
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .back-btn:hover {
+            color: #64b5f6;
+        }
+
+        /* Video Section */
+        .video-section {
+            margin: 2rem 0;
+        }
+
+        .video-container {
+            background-color: #000;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Chat Section */
+        .chat-section {
+            background-color: #1e1e1e;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            margin-bottom: 3rem;
+        }
+
+        .chat-title {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .chat-messages {
+            height: 300px;
+            overflow-y: auto;
+            margin-bottom: 1rem;
+            padding: 1rem;
+            background-color: #2a2a2a;
+            border-radius: 6px;
+        }
+
+        .chat-message {
+            margin-bottom: 1rem;
+            padding: 0.8rem;
+            background-color: #333;
+            border-radius: 6px;
+        }
+
+        .message-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .message-user {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .message-time {
+            color: #888;
+        }
+
+        .chat-input {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .chat-input input {
+            flex: 1;
+            padding: 0.8rem;
+            border: none;
+            border-radius: 4px;
+            background-color: #2a2a2a;
+            color: white;
+        }
+
+        .chat-input button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0 1.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .chat-input button:hover {
+            background-color: #1976d2;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #0a0a0a;
+            color: white;
+            padding: 2rem 0;
+            margin-top: 3rem;
+            text-align: center;
+        }
+
+        .footer-content p {
+            color: #bbbbbb;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">
+                    <i class="fas fa-futbol"></i>
+                    <span>FootSpace</span>
+                </a>
+                <a href="index.html" class="back-btn">
+                    <i class="fas fa-arrow-left"></i>
+                    Retour à l'accueil
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Video Section -->
+    <section class="video-section">
+        <div class="container">
+            <div class="video-container">
+                <iframe 
+                    allowfullscreen="true" 
+                    frameborder="0" 
+                    height="600px" 
+                    scrolling="1" 
+                    src="https://tgyh.koooooralive.com/albaplayer/sports-c4/" 
+                    width="100%">
+                </iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chat Section -->
+    <section class="container">
+        <div class="chat-section">
+            <h3 class="chat-title">
+                <i class="fas fa-comments"></i>
+                Chat en Direct
+            </h3>
+            <div class="chat-messages">
+                <div class="chat-message">
+                    <div class="message-header">
+                        <span class="message-user">PSG_Fan_23</span>
+                        <span class="message-time">20:42</span>
+                    </div>
+                    <div class="message-text">Quel match intense ! 🔥</div>
+                </div>
+                <div class="chat-message">
+                    <div class="message-header">
+                        <span class="message-user">OM4Ever</span>
+                        <span class="message-time">20:43</span>
+                    </div>
+                    <div class="message-text">Allez l'OM ! On va marquer !</div>
+                </div>
+                <div class="chat-message">
+                    <div class="message-header">
+                        <span class="message-user">FootExpert</span>
+                        <span class="message-time">20:45</span>
+                    </div>
+                    <div class="message-text">Les deux équipes se donnent à fond</div>
+                </div>
+                <div class="chat-message">
+                    <div class="message-header">
+                        <span class="message-user">Ligue1_Fan</span>
+                        <span class="message-time">20:47</span>
+                    </div>
+                    <div class="message-text">Quel ambiance incroyable !</div>
+                </div>
+            </div>
+            <div class="chat-input">
+                <input type="text" placeholder="Tapez votre message...">
+                <button>Envoyer</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2023 FootSpace - Tous droits réservés</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simulation de mise à jour du chat
+        document.addEventListener('DOMContentLoaded', function() {
+            const chatInput = document.querySelector('.chat-input input');
+            const chatButton = document.querySelector('.chat-input button');
+            const chatMessages = document.querySelector('.chat-messages');
+            
+            chatButton.addEventListener('click', function() {
+                if (chatInput.value.trim() !== '') {
+                    const now = new Date();
+                    const time = `${now.getHours()}:${now.getMinutes().toString().padStart(2, '0')}`;
+                    
+                    const messageDiv = document.createElement('div');
+                    messageDiv.className = 'chat-message';
+                    messageDiv.innerHTML = `
+                        <div class="message-header">
+                            <span class="message-user">Vous</span>
+                            <span class="message-time">${time}</span>
+                        </div>
+                        <div class="message-text">${chatInput.value}</div>
+                    `;
+                    
+                    chatMessages.appendChild(messageDiv);
+                    chatInput.value = '';
+                    chatMessages.scrollTop = chatMessages.scrollHeight;
+                }
+            });
+            
+            // Simulation de nouveaux messages
+            setInterval(() => {
+                const users = ['Fan_PSG', 'Support_OM', 'FootLover', 'GoalHunter'];
+                const messages = [
+                    'Quel match incroyable !',
+                    'Allez !!!',
+                    'Les équipes sont en grande forme ce soir',
+                    'J\'adore cette intensité',
+                    'Qui va marquer le prochain but ?',
+                    'Quel pressing !',
+                    'Super ambiance dans le stade',
+                    'Match très serré'
+                ];
+                
+                if (Math.random() > 0.7) {
+                    const now = new Date();
+                    const time = `${now.getHours()}:${now.getMinutes().toString().padStart(2, '0')}`;
+                    const user = users[Math.floor(Math.random() * users.length)];
+                    const message = messages[Math.floor(Math.random() * messages.length)];
+                    
+                    const messageDiv = document.createElement('div');
+                    messageDiv.className = 'chat-message';
+                    messageDiv.innerHTML = `
+                        <div class="message-header">
+                            <span class="message-user">${user}</span>
+                            <span class="message-time">${time}</span>
+                        </div>
+                        <div class="message-text">${message}</div>
+                    `;
+                    
+                    chatMessages.appendChild(messageDiv);
+                    chatMessages.scrollTop = chatMessages.scrollHeight;
+                }
+            }, 10000);
+        });
+    </script>
+</body>
+</html>
