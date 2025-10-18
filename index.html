@@ -191,12 +191,14 @@
 
         .match-competition {
             font-weight: 600;
+            font-size: 0.9rem;
         }
 
         .match-time {
             display: flex;
             align-items: center;
             gap: 5px;
+            font-size: 0.9rem;
         }
 
         .live-indicator {
@@ -245,24 +247,35 @@
         }
 
         .team-logo {
-            width: 60px;
-            height: 60px;
+            width: 50px;
+            height: 50px;
             margin-bottom: 0.5rem;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2rem;
-            color: var(--primary-color);
+            border-radius: 50%;
+            overflow: hidden;
+            background-color: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .team-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            padding: 5px;
         }
 
         .team-name {
             font-weight: 600;
+            font-size: 0.9rem;
         }
 
         .vs {
             font-weight: bold;
             color: var(--secondary-color);
             margin: 0 1rem;
+            font-size: 0.8rem;
         }
 
         .match-actions {
@@ -284,6 +297,7 @@
             gap: 8px;
             background-color: var(--primary-color);
             color: white;
+            font-size: 0.9rem;
         }
 
         .follow-btn:hover {
@@ -336,13 +350,14 @@
         .highlight-title {
             font-weight: 600;
             margin-bottom: 0.5rem;
+            font-size: 0.9rem;
         }
 
         .highlight-meta {
             display: flex;
             justify-content: space-between;
             color: #757575;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
         }
 
         /* Infos */
@@ -440,24 +455,37 @@
             }
             
             .team-logo {
-                width: 50px;
-                height: 50px;
-                font-size: 1.5rem;
+                width: 40px;
+                height: 40px;
             }
             
             .team-name {
-                font-size: 0.9rem;
+                font-size: 0.8rem;
+            }
+            
+            .match-competition, .match-time {
+                font-size: 0.8rem;
             }
         }
         
         @media (max-width: 480px) {
             .teams {
-                flex-direction: column;
-                gap: 1rem;
+                flex-direction: row;
+                gap: 0.5rem;
             }
             
             .vs {
-                margin: 0;
+                margin: 0 0.5rem;
+                font-size: 0.7rem;
+            }
+            
+            .team-logo {
+                width: 35px;
+                height: 35px;
+            }
+            
+            .team-name {
+                font-size: 0.7rem;
             }
         }
     </style>
@@ -513,76 +541,439 @@
                 </div>
                 
                 <div class="matches-list">
-                    <!-- Match 1 - ALITIHAD VS ALFAYHA 16H05 -->
+                    <!-- Match 1 - Nottingham Forest vs Chelsea -->
                     <div class="match-card">
                         <div class="match-header">
-                            <div class="match-competition">Championnat Saoudien</div>
+                            <div class="match-competition">Premier League</div>
                             <div class="match-time">
                                 <div class="live-indicator"></div>
-                                <span>16:05</span>
+                                <span>12:30</span>
                             </div>
                         </div>
                         <div class="match-content">
                             <div class="teams">
                                 <div class="team">
                                     <div class="team-logo">
-                                        <i class="fas fa-shield-alt"></i>
+                                        <img src="https://upload.wikimedia.org/wikipedia/fr/thumb/c/c5/Logo_Nottingham_Forest.svg/1200px-Logo_Nottingham_Forest.svg.png" alt="Nottingham Forest">
                                     </div>
-                                    <div class="team-name">Al Ittihad</div>
+                                    <div class="team-name">Nottingham Forest</div>
                                 </div>
                                 <div class="vs">VS</div>
                                 <div class="team">
                                     <div class="team-logo">
-                                        <i class="fas fa-shield-alt"></i>
+                                        <img src="https://upload.wikimedia.org/wikipedia/fr/thumb/5/51/Logo_Chelsea_FC.svg/1024px-Logo_Chelsea_FC.svg.png" alt="Chelsea">
                                     </div>
-                                    <div class="team-name">Al Fayha</div>
+                                    <div class="team-name">Chelsea</div>
                                 </div>
                             </div>
                             <div class="match-actions">
-                                <a href="ALITIHAD_ALFAYHA.html" class="follow-btn">
+                                <a href="nottingham_chelsea.html" class="follow-btn">
                                     <i class="fas fa-play"></i> Suivre
                                 </a>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Match 2 - PSG VS STRASBOURG 19H45 -->
+                    <!-- Match 2 - Real Mayorque vs Seville -->
+                    <div class="match-card">
+                        <div class="match-header">
+                            <div class="match-competition">La Liga</div>
+                            <div class="match-time">
+                                <div class="live-indicator"></div>
+                                <span>13:00</span>
+                            </div>
+                        </div>
+                        <div class="match-content">
+                            <div class="teams">
+                                <div class="team">
+                                    <div class="team-logo">
+                                        <img src="https://upload.wikimedia.org/wikipedia/fr/thumb/6/6e/RCD_Mallorca_logo.svg/1200px-RCD_Mallorca_logo.svg.png" alt="Real Mayorque">
+                                    </div>
+                                    <div class="team-name">Real Mayorque</div>
+                                </div>
+                                <div class="vs">VS</div>
+                                <div class="team">
+                                    <div class="team-logo">
+                                        <img src="https://upload.wikimedia.org/wikipedia/fr/thumb/5/5e/Sevilla_FC_logo.svg/1200px-Sevilla_FC_logo.svg.png" alt="Seville">
+                                    </div>
+                                    <div class="team-name">Seville</div>
+                                </div>
+                            </div>
+                            <div class="match-actions">
+                                <a href="mayorque_seville.html" class="follow-btn">
+                                    <i class="fas fa-play"></i> Suivre
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Match 3 - Bayer Leverkusen vs Mainz -->
+                    <div class="match-card">
+                        <div class="match-header">
+                            <div class="match-competition">Bundesliga</div>
+                            <div class="match-time">
+                                <div class="live-indicator"></div>
+                                <span>14:30</span>
+                            </div>
+                        </div>
+                        <div class="match-content">
+                            <div class="teams">
+                                <div class="team">
+                                    <div class="team-logo">
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Bayer_04_Leverkusen_Logo.svg/1200px-Bayer_04_Leverkusen_Logo.svg.png" alt="Bayer Leverkusen">
+                                    </div>
+                                    <div class="team-name">Bayer Leverkusen</div>
+                                </div>
+                                <div class="vs">VS</div>
+                                <div class="team">
+                                    <div class="team-logo">
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/1._FSV_Mainz_05_Logo.svg/1200px-1._FSV_Mainz_05_Logo.svg.png" alt="Mainz">
+                                    </div>
+                                    <div class="team-name">Mainz</div>
+                                </div>
+                            </div>
+                            <div class="match-actions">
+                                <a href="leverkusen_mainz.html" class="follow-btn">
+                                    <i class="fas fa-play"></i> Suivre
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Match 4 - Bournemouth vs Crystal Palace -->
+                    <div class="match-card">
+                        <div class="match-header">
+                            <div class="match-competition">Premier League</div>
+                            <div class="match-time">
+                                <div class="live-indicator"></div>
+                                <span>15:00</span>
+                            </div>
+                        </div>
+                        <div class="match-content">
+                            <div class="teams">
+                                <div class="team">
+                                    <div class="team-logo">
+                                        <img src="https://upload.wikimedia.org/wikipedia/fr/thumb/0/0d/AFC_Bournemouth_%282013%29.svg/1200px-AFC_Bournemouth_%282013%29.svg.png" alt="Bournemouth">
+                                    </div>
+                                    <div class="team-name">Bournemouth</div>
+                                </div>
+                                <div class="vs">VS</div>
+                                <div class="team">
+                                    <div class="team-logo">
+                                        <img src="https://upload.wikimedia.org/wikipedia/fr/thumb/0/0c/Crystal_Palace_FC_logo.svg/1200px-Crystal_Palace_FC_logo.svg.png" alt="Crystal Palace">
+                                    </div>
+                                    <div class="team-name">Crystal Palace</div>
+                                </div>
+                            </div>
+                            <div class="match-actions">
+                                <a href="bournemouth_palace.html" class="follow-btn">
+                                    <i class="fas fa-play"></i> Suivre
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Match 5 - Everton vs Manchester City -->
+                    <div class="match-card">
+                        <div class="match-header">
+                            <div class="match-competition">Premier League</div>
+                            <div class="match-time">
+                                <div class="live-indicator"></div>
+                                <span>15:00</span>
+                            </div>
+                        </div>
+                        <div class="match-content">
+                            <div class="teams">
+                                <div class="team">
+                                    <div class="team-logo">
+                                        <img src="https://upload.wikimedia.org/wikipedia/fr/thumb/7/7e/Everton_FC_logo.svg/1200px-Everton_FC_logo.svg.png" alt="Everton">
+                                    </div>
+                                    <div class="team-name">Everton</div>
+                                </div>
+                                <div class="vs">VS</div>
+                                <div class="team">
+                                    <div class="team-logo">
+                                        <img src="https://upload.wikimedia.org/wikipedia/fr/thumb/b/b4/Manchester_City_FC_logo.svg/1200px-Manchester_City_FC_logo.svg.png" alt="Manchester City">
+                                    </div>
+                                    <div class="team-name">Man. City</div>
+                                </div>
+                            </div>
+                            <div class="match-actions">
+                                <a href="everton_city.html" class="follow-btn">
+                                    <i class="fas fa-play"></i> Suivre
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Match 6 - Wolverhampton vs Sunderland -->
+                    <div class="match-card">
+                        <div class="match-header">
+                            <div class="match-competition">Championship</div>
+                            <div class="match-time">
+                                <div class="live-indicator"></div>
+                                <span>15:00</span>
+                            </div>
+                        </div>
+                        <div class="match-content">
+                            <div class="teams">
+                                <div class="team">
+                                    <div class="team-logo">
+                                        <img src="https://upload.wikimedia.org/wikipedia/fr/thumb/f/fc/Wolverhampton_Wanderers.svg/1200px-Wolverhampton_Wanderers.svg.png" alt="Wolverhampton">
+                                    </div>
+                                    <div class="team-name">Wolverhampton</div>
+                                </div>
+                                <div class="vs">VS</div>
+                                <div class="team">
+                                    <div class="team-logo">
+                                        <img src="https://upload.wikimedia.org/wikipedia/fr/thumb/7/7e/Sunderland_AFC_logo.svg/1200px-Sunderland_AFC_logo.svg.png" alt="Sunderland">
+                                    </div>
+                                    <div class="team-name">Sunderland</div>
+                                </div>
+                            </div>
+                            <div class="match-actions">
+                                <a href="wolves_sunderland.html" class="follow-btn">
+                                    <i class="fas fa-play"></i> Suivre
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Match 7 - Newcastle vs Brighton -->
+                    <div class="match-card">
+                        <div class="match-header">
+                            <div class="match-competition">Premier League</div>
+                            <div class="match-time">
+                                <div class="live-indicator"></div>
+                                <span>15:00</span>
+                            </div>
+                        </div>
+                        <div class="match-content">
+                            <div class="teams">
+                                <div class="team">
+                                    <div class="team-logo">
+                                        <img src="https://upload.wikimedia.org/wikipedia/fr/thumb/5/5f/Newcastle_United_Logo.svg/1200px-Newcastle_United_Logo.svg.png" alt="Newcastle">
+                                    </div>
+                                    <div class="team-name">Newcastle</div>
+                                </div>
+                                <div class="vs">VS</div>
+                                <div class="team">
+                                    <div class="team-logo">
+                                        <img src="https://upload.wikimedia.org/wikipedia/fr/thumb/5/5f/Brighton_%26_Hove_Albion_logo.svg/1200px-Brighton_%26_Hove_Albion_logo.svg.png" alt="Brighton">
+                                    </div>
+                                    <div class="team-name">Brighton</div>
+                                </div>
+                            </div>
+                            <div class="match-actions">
+                                <a href="newcastle_brighton.html" class="follow-btn">
+                                    <i class="fas fa-play"></i> Suivre
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Match 8 - Girona vs Barcelone -->
+                    <div class="match-card">
+                        <div class="match-header">
+                            <div class="match-competition">La Liga</div>
+                            <div class="match-time">
+                                <div class="live-indicator"></div>
+                                <span>15:15</span>
+                            </div>
+                        </div>
+                        <div class="match-content">
+                            <div class="teams">
+                                <div class="team">
+                                    <div class="team-logo">
+                                        <img src="https://upload.wikimedia.org/wikipedia/fr/thumb/9/9a/Logo_Girona_FC.svg/1200px-Logo_Girona_FC.svg.png" alt="Girona">
+                                    </div>
+                                    <div class="team-name">Girona</div>
+                                </div>
+                                <div class="vs">VS</div>
+                                <div class="team">
+                                    <div class="team-logo">
+                                        <img src="https://upload.wikimedia.org/wikipedia/fr/thumb/a/a1/Logo_FC_Barcelona.svg/1200px-Logo_FC_Barcelona.svg.png" alt="Barcelone">
+                                    </div>
+                                    <div class="team-name">Barcelone</div>
+                                </div>
+                            </div>
+                            <div class="match-actions">
+                                <a href="girona_barca.html" class="follow-btn">
+                                    <i class="fas fa-play"></i> Suivre
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Match 9 - Lyon vs Nice -->
                     <div class="match-card">
                         <div class="match-header">
                             <div class="match-competition">Ligue 1</div>
                             <div class="match-time">
                                 <div class="live-indicator"></div>
-                                <span>19:45</span>
+                                <span>16:00</span>
                             </div>
                         </div>
                         <div class="match-content">
                             <div class="teams">
                                 <div class="team">
                                     <div class="team-logo">
-                                        <i class="fas fa-shield-alt"></i>
+                                        <img src="https://upload.wikimedia.org/wikipedia/fr/thumb/1/1a/Olympique_lyonnais_%28logo%29.svg/1200px-Olympique_lyonnais_%28logo%29.svg.png" alt="Lyon">
                                     </div>
-                                    <div class="team-name">PSG</div>
+                                    <div class="team-name">Lyon</div>
                                 </div>
                                 <div class="vs">VS</div>
                                 <div class="team">
                                     <div class="team-logo">
-                                        <i class="fas fa-shield-alt"></i>
+                                        <img src="https://upload.wikimedia.org/wikipedia/fr/thumb/0/02/OGC_Nice_2013.svg/1200px-OGC_Nice_2013.svg.png" alt="Nice">
                                     </div>
-                                    <div class="team-name">Strasbourg</div>
+                                    <div class="team-name">Nice</div>
                                 </div>
                             </div>
                             <div class="match-actions">
-                                <a href="psg_starbourg.html" class="follow-btn">
+                                <a href="lyon_nice.html" class="follow-btn">
                                     <i class="fas fa-play"></i> Suivre
                                 </a>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Match 3 - ALAHLI VS ACHABAB 19H00 -->
+                    <!-- Match 10 - Real Betis vs Villarreal -->
                     <div class="match-card">
                         <div class="match-header">
-                            <div class="match-competition">Championnat Saoudien</div>
+                            <div class="match-competition">La Liga</div>
+                            <div class="match-time">
+                                <div class="live-indicator"></div>
+                                <span>17:30</span>
+                            </div>
+                        </div>
+                        <div class="match-content">
+                            <div class="teams">
+                                <div class="team">
+                                    <div class="team-logo">
+                                        <img src="https://upload.wikimedia.org/wikipedia/fr/thumb/1/13/Real_Betis_logo.svg/1200px-Real_Betis_logo.svg.png" alt="Real Betis">
+                                    </div>
+                                    <div class="team-name">Real Betis</div>
+                                </div>
+                                <div class="vs">VS</div>
+                                <div class="team">
+                                    <div class="team-logo">
+                                        <img src="https://upload.wikimedia.org/wikipedia/fr/thumb/7/70/Villarreal_CF_logo.svg/1200px-Villarreal_CF_logo.svg.png" alt="Villarreal">
+                                    </div>
+                                    <div class="team-name">Villarreal</div>
+                                </div>
+                            </div>
+                            <div class="match-actions">
+                                <a href="betis_villarreal.html" class="follow-btn">
+                                    <i class="fas fa-play"></i> Suivre
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Match 11 - Dortmund vs Bayern Munich -->
+                    <div class="match-card">
+                        <div class="match-header">
+                            <div class="match-competition">Bundesliga</div>
+                            <div class="match-time">
+                                <div class="live-indicator"></div>
+                                <span>17:30</span>
+                            </div>
+                        </div>
+                        <div class="match-content">
+                            <div class="teams">
+                                <div class="team">
+                                    <div class="team-logo">
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Borussia_Dortmund_logo.svg/1200px-Borussia_Dortmund_logo.svg.png" alt="Dortmund">
+                                    </div>
+                                    <div class="team-name">Dortmund</div>
+                                </div>
+                                <div class="vs">VS</div>
+                                <div class="team">
+                                    <div class="team-logo">
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/FC_Bayern_M%C3%BCnchen_logo_%282017%29.svg/1200px-FC_Bayern_M%C3%BCnchen_logo_%282017%29.svg.png" alt="Bayern Munich">
+                                    </div>
+                                    <div class="team-name">Bayern Munich</div>
+                                </div>
+                            </div>
+                            <div class="match-actions">
+                                <a href="dortmund_bayern.html" class="follow-btn">
+                                    <i class="fas fa-play"></i> Suivre
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Match 12 - Arsenal vs Fulham -->
+                    <div class="match-card">
+                        <div class="match-header">
+                            <div class="match-competition">Premier League</div>
+                            <div class="match-time">
+                                <div class="live-indicator"></div>
+                                <span>17:30</span>
+                            </div>
+                        </div>
+                        <div class="match-content">
+                            <div class="teams">
+                                <div class="team">
+                                    <div class="team-logo">
+                                        <img src="https://upload.wikimedia.org/wikipedia/fr/thumb/b/b4/Arsenal_FC.svg/1200px-Arsenal_FC.svg.png" alt="Arsenal">
+                                    </div>
+                                    <div class="team-name">Arsenal</div>
+                                </div>
+                                <div class="vs">VS</div>
+                                <div class="team">
+                                    <div class="team-logo">
+                                        <img src="https://upload.wikimedia.org/wikipedia/fr/thumb/8/8e/Fulham_FC_%2822%29.svg/1200px-Fulham_FC_%2822%29.svg.png" alt="Fulham">
+                                    </div>
+                                    <div class="team-name">Fulham</div>
+                                </div>
+                            </div>
+                            <div class="match-actions">
+                                <a href="arsenal_fulham.html" class="follow-btn">
+                                    <i class="fas fa-play"></i> Suivre
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Match 13 - Monaco vs Angers -->
+                    <div class="match-card">
+                        <div class="match-header">
+                            <div class="match-competition">Ligue 1</div>
+                            <div class="match-time">
+                                <div class="live-indicator"></div>
+                                <span>18:00</span>
+                            </div>
+                        </div>
+                        <div class="match-content">
+                            <div class="teams">
+                                <div class="team">
+                                    <div class="team-logo">
+                                        <img src="https://upload.wikimedia.org/wikipedia/fr/thumb/5/5e/AS_Monaco_FC_logo.svg/1200px-AS_Monaco_FC_logo.svg.png" alt="Monaco">
+                                    </div>
+                                    <div class="team-name">Monaco</div>
+                                </div>
+                                <div class="vs">VS</div>
+                                <div class="team">
+                                    <div class="team-logo">
+                                        <img src="https://upload.wikimedia.org/wikipedia/fr/thumb/3/3f/Logo_Angers_SCO.svg/1200px-Logo_Angers_SCO.svg.png" alt="Angers">
+                                    </div>
+                                    <div class="team-name">Angers</div>
+                                </div>
+                            </div>
+                            <div class="match-actions">
+                                <a href="monaco_angers.html" class="follow-btn">
+                                    <i class="fas fa-play"></i> Suivre
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Match 14 - Al Fateh vs Al Nassr -->
+                    <div class="match-card">
+                        <div class="match-header">
+                            <div class="match-competition">Ligue Saoudienne</div>
                             <div class="match-time">
                                 <div class="live-indicator"></div>
                                 <span>19:00</span>
@@ -592,53 +983,20 @@
                             <div class="teams">
                                 <div class="team">
                                     <div class="team-logo">
-                                        <i class="fas fa-shield-alt"></i>
+                                        <img src="https://upload.wikimedia.org/wikipedia/fr/thumb/8/8e/Al-Fateh_SC_logo.svg/1200px-Al-Fateh_SC_logo.svg.png" alt="Al Fateh">
                                     </div>
-                                    <div class="team-name">Al Ahli</div>
+                                    <div class="team-name">Al Fateh</div>
                                 </div>
                                 <div class="vs">VS</div>
                                 <div class="team">
                                     <div class="team-logo">
-                                        <i class="fas fa-shield-alt"></i>
+                                        <img src="https://upload.wikimedia.org/wikipedia/fr/thumb/4/43/Al_Nassr_Logo.svg/1200px-Al_Nassr_Logo.svg.png" alt="Al Nassr">
                                     </div>
-                                    <div class="team-name">Al Shabab</div>
+                                    <div class="team-name">Al Nassr</div>
                                 </div>
                             </div>
                             <div class="match-actions">
-                                <a href="alahly_chabab.html" class="follow-btn">
-                                    <i class="fas fa-play"></i> Suivre
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Match 4 - REAL OVIEDO VS ESPAGNOLE 20H00 -->
-                    <div class="match-card">
-                        <div class="match-header">
-                            <div class="match-competition">La Liga</div>
-                            <div class="match-time">
-                                <div class="live-indicator"></div>
-                                <span>20:00</span>
-                            </div>
-                        </div>
-                        <div class="match-content">
-                            <div class="teams">
-                                <div class="team">
-                                    <div class="team-logo">
-                                        <i class="fas fa-shield-alt"></i>
-                                    </div>
-                                    <div class="team-name">Real Oviedo</div>
-                                </div>
-                                <div class="vs">VS</div>
-                                <div class="team">
-                                    <div class="team-logo">
-                                        <i class="fas fa-shield-alt"></i>
-                                    </div>
-                                    <div class="team-name">Espanyol</div>
-                                </div>
-                            </div>
-                            <div class="match-actions">
-                                <a href="real_esp.html" class="follow-btn">
+                                <a href="fateh_nassr.html" class="follow-btn">
                                     <i class="fas fa-play"></i> Suivre
                                 </a>
                             </div>
