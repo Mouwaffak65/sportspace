@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FootSpace - Lille vs Nantes</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #1e88e5;
+            --secondary-color: #e53935;
+            --dark-color: #121212;
+            --light-color: #f5f5f5;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0c2461, #1e3799);
+            color: white;
+            min-height: 100vh;
+        }
+
+        .stream-page {
+            background: linear-gradient(135deg, #0c2461, #1e3799);
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* Header amélioré */
+        .stream-header {
+            background: rgba(18, 18, 18, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px 20px;
+            border-bottom: 2px solid var(--primary-color);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo img {
+            height: 45px;
+            width: auto;
+            border-radius: 8px;
+        }
+
+        .logo-text {
+            font-size: 1.6rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .match-info {
+            text-align: center;
+            flex-grow: 1;
+        }
+
+        .match-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+            color: white;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .match-details {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .match-status {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--secondary-color);
+            font-weight: 600;
+        }
+
+        .live-indicator {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: var(--secondary-color);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(229, 57, 53, 0.7);
+            }
+            70% {
+                transform: scale(1);
+                box-shadow: 0 0 0 10px rgba(229, 57, 53, 0);
+            }
+            100% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(229, 57, 53, 0);
+            }
+        }
+
+        /* Bannière Telegram améliorée */
+        .telegram-banner {
+            background: linear-gradient(135deg, #0088cc, #00aced);
+            color: white;
+            padding: 15px 20px;
+            margin: 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .telegram-banner::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            transform: rotate(45deg);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        .telegram-content {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .telegram-icon {
+            font-size: 2rem;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        .telegram-text {
+            flex: 1;
+            max-width: 500px;
+        }
+
+        .telegram-text h3 {
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+            font-weight: 700;
+        }
+
+        .telegram-text p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-bottom: 0;
+        }
+
+        .telegram-btn {
+            background: white;
+            color: #0088cc;
+            padding: 12px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            white-space: nowrap;
+        }
+
+        .telegram-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            background: #f8f9fa;
+        }
+
+        /* Container de streaming */
+        .stream-container {
+            position: relative;
+            width: 100%;
+            height: calc(100vh - 200px);
+            background: #000;
+        }
+
+        .stream-frame {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Watermark */
+        .watermark {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 12px 18px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .watermark-logo {
+            height: 30px;
+            width: auto;
+        }
+
+        .watermark-text {
+            font-weight: bold;
+            color: var(--primary-color);
+            font-size: 1.1rem;
+        }
+
+        /* Contrôles */
+        .controls-overlay {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            width: 100%;
+            padding: 20px;
+            background: linear-gradient(0deg, rgba(0,0,0,0.8) 0%, transparent 100%);
+            z-index: 100;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            opacity: 1;
+            transition: var(--transition);
+        }
+
+        .control-btn {
+            background: linear-gradient(135deg, var(--primary-color), #1565c0);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .control-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+            background: linear-gradient(135deg, #1976d2, #0d47a1);
+        }
+
+        /* Bouton retour */
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 101;
+            background: linear-gradient(135deg, var(--primary-color), #1565c0);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .back-button:hover {
+            transform: translateX(-5px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Informations du match */
+        .match-teams {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+            margin: 10px 0;
+        }
+
+        .team {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .team-logo {
+            width: 40px;
+            height: 40px;
+            background: white;
+            border-radius: 50%;
+            padding: 5px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        .team-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .team-name {
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .vs {
+            font-weight: bold;
+            color: var(--secondary-color);
+            font-size: 1.2rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .stream-container {
+                height: calc(100vh - 180px);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+            }
+
+            .logo {
+                justify-content: center;
+            }
+
+            .match-title {
+                font-size: 1.2rem;
+            }
+
+            .telegram-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+            }
+
+            .telegram-text {
+                max-width: 100%;
+            }
+
+            .telegram-btn {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+
+            .stream-container {
+                height: calc(100vh - 220px);
+            }
+
+            .controls-overlay {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .control-btn {
+                width: 200px;
+                justify-content: center;
+            }
+
+            .watermark {
+                top: 15px;
+                right: 15px;
+                padding: 8px 12px;
+            }
+
+            .match-teams {
+                gap: 15px;
+            }
+
+            .team-logo {
+                width: 35px;
+                height: 35px;
+            }
+
+            .team-name {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .stream-header {
+                padding: 10px 15px;
+            }
+
+            .logo img {
+                height: 35px;
+            }
+
+            .logo-text {
+                font-size: 1.3rem;
+            }
+
+            .match-title {
+                font-size: 1.1rem;
+            }
+
+            .match-details {
+                flex-direction: column;
+                gap: 5px;
+            }
+
+            .telegram-banner {
+                padding: 12px 15px;
+            }
+
+            .telegram-icon {
+                font-size: 1.5rem;
+            }
+
+            .telegram-text h3 {
+                font-size: 1.1rem;
+            }
+
+            .telegram-text p {
+                font-size: 0.8rem;
+            }
+
+            .stream-container {
+                height: calc(100vh - 240px);
+            }
+
+            .back-button {
+                top: 15px;
+                left: 15px;
+                padding: 10px 15px;
+                font-size: 0.9rem;
+            }
+
+            .watermark {
+                flex-direction: column;
+                gap: 5px;
+                text-align: center;
+                padding: 8px 10px;
+            }
+
+            .watermark-text {
+                font-size: 0.9rem;
+            }
+
+            .match-teams {
+                gap: 10px;
+            }
+
+            .team {
+                flex-direction: column;
+                gap: 5px;
+            }
+
+            .team-name {
+                font-size: 0.9rem;
+            }
+
+            .vs {
+                font-size: 1rem;
+            }
+        }
+
+        /* Animation de chargement */
+        .loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 50;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(255,255,255,0.3);
+            border-top: 5px solid var(--primary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 15px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="stream-page">
+        <!-- Header avec match -->
+        <header class="stream-header">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMjAiIGN5PSIyMCIgcj0iMjAiIGZpbGw9IiMxZTg4ZTUiLz4KPHBhdGggZD0iTTE0IDE1SDE4VjI1SDE0VjE1WiIgZmlsbD0id2hpdGUiLz4KPHBhdGggZD0iTTIyIDE1SDI2VjI1SDIyVjE1WiIgZmlsbD0id2hpdGUiLz4KPHBhdGggZD0iTTE4IDE3SDIyVjE5SDE4VjE3WiIgZmlsbD0id2hpdGUiLz4KPC9zdmc+Cg==" alt="FootSpace Logo">
+                    <span class="logo-text">FootSpace</span>
+                </div>
+                
+                <div class="match-info">
+                    <h1 class="match-title">LIVE - Ligue 1</h1>
+                    <div class="match-teams">
+                        <div class="team">
+                            <div class="team-logo">
+                                <img src="https://upload.wikimedia.org/wikipedia/fr/thumb/7/74/Logo_Lille_OSC_2018.svg/1200px-Logo_Lille_OSC_2018.svg.png" alt="Lille">
+                            </div>
+                            <span class="team-name">Lille</span>
+                        </div>
+                        <div class="vs">VS</div>
+                        <div class="team">
+                            <div class="team-logo">
+                                <img src="https://upload.wikimedia.org/wikipedia/fr/thumb/6/6e/FC_Nantes_%28logo%29.svg/1200px-FC_Nantes_%28logo%29.svg.png" alt="Nantes">
+                            </div>
+                            <span class="team-name">Nantes</span>
+                        </div>
+                    </div>
+                    <div class="match-details">
+                        <div class="match-status">
+                            <div class="live-indicator"></div>
+                            <span>EN DIRECT</span>
+                        </div>
+                        <span>•</span>
+                        <span>19:45</span>
+                        <span>•</span>
+                        <span>Stade Pierre-Mauroy</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Bannière Telegram -->
+        <div class="telegram-banner">
+            <div class="telegram-content">
+                <i class="fab fa-telegram telegram-icon"></i>
+                <div class="telegram-text">
+                    <h3>Rejoignez FootSpace sur Telegram!</h3>
+                    <p>Streamings en direct, résumés exclusifs et communautés de fans</p>
+                </div>
+                <a href="https://t.me/foot_space_of" target="_blank" class="telegram-btn">
+                    <i class="fab fa-telegram"></i>
+                    Nous Rejoindre
+                </a>
+            </div>
+        </div>
+
+        <!-- Container de streaming -->
+        <div class="stream-container">
+            <!-- Loading -->
+            <div class="loading" id="loading">
+                <div class="spinner"></div>
+                <p>Chargement du streaming...</p>
+            </div>
+
+            <!-- Bouton retour -->
+            <a href="index.html" class="back-button">
+                <i class="fas fa-arrow-left"></i>
+                Retour
+            </a>
+
+            <!-- Watermark -->
+            <div class="watermark">
+                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMjAiIGN5PSIyMCIgcj0iMjAiIGZpbGw9IiMxZTg4ZTUiLz4KPHBhdGggZD0iTTE0IDE1SDE4VjI1SDE0VjE1WiIgZmlsbD0id2hpdGUiLz4KPHBhdGggZD0iTTIyIDE1SDI2VjI1SDIyVjE1WiIgZmlsbD0id2hpdGUiLz4KPHBhdGggZD0iTTE4IDE3SDIyVjE5SDE4VjE3WiIgZmlsbD0id2hpdGUiLz4KPC9zdmc+Cg==" alt="FootSpace Logo" class="watermark-logo">
+                <span class="watermark-text">FootSpace</span>
+            </div>
+
+            <!-- Contrôles -->
+            <div class="controls-overlay" id="controls">
+                <button class="control-btn" onclick="toggleFullscreen()">
+                    <i class="fas fa-expand"></i>
+                    Plein écran
+                </button>
+                <button class="control-btn" onclick="refreshStream()">
+                    <i class="fas fa-redo"></i>
+                    Actualiser
+                </button>
+                <button class="control-btn" onclick="toggleChat()">
+                    <i class="fas fa-comments"></i>
+                    Chat
+                </button>
+            </div>
+
+            <!-- Iframe de streaming -->
+            <iframe 
+                allowfullscreen="true" 
+                frameborder="0" 
+                height="100%" 
+                scrolling="1" 
+                src="https://tgyh.kora1goal.com/albaplayer/sports-4/" 
+                width="100%"
+                class="stream-frame"
+                id="streamFrame"
+                onload="document.getElementById('loading').style.display = 'none'">
+            </iframe>
+        </div>
+    </div>
+
+    <script>
+        // Fonction pour le plein écran
+        function toggleFullscreen() {
+            const elem = document.documentElement;
+            
+            if (!document.fullscreenElement) {
+                if (elem.requestFullscreen) {
+                    elem.requestFullscreen();
+                } else if (elem.webkitRequestFullscreen) {
+                    elem.webkitRequestFullscreen();
+                } else if (elem.msRequestFullscreen) {
+                    elem.msRequestFullscreen();
+                }
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if (document.webkitExitFullscreen) {
+                    document.webkitExitFullscreen();
+                } else if (document.msExitFullscreen) {
+                    document.msExitFullscreen();
+                }
+            }
+        }
+
+        // Fonction pour actualiser le stream
+        function refreshStream() {
+            const iframe = document.getElementById('streamFrame');
+            const loading = document.getElementById('loading');
+            
+            loading.style.display = 'block';
+            const currentSrc = iframe.src;
+            iframe.src = '';
+            setTimeout(() => {
+                iframe.src = currentSrc;
+            }, 100);
+        }
+
+        // Fonction pour le chat (placeholder)
+        function toggleChat() {
+            alert('Fonction chat à implémenter');
+        }
+
+        // Masquer les contrôles après un certain temps
+        let controlsTimeout;
+        function hideControls() {
+            const controls = document.getElementById('controls');
+            controls.style.opacity = '0';
+        }
+
+        function showControls() {
+            const controls = document.getElementById('controls');
+            controls.style.opacity = '1';
+            
+            clearTimeout(controlsTimeout);
+            controlsTimeout = setTimeout(hideControls, 3000);
+        }
+
+        // Initialiser le masquage automatique
+        document.addEventListener('DOMContentLoaded', function() {
+            controlsTimeout = setTimeout(hideControls, 3000);
+            
+            // Montrer les contrôles au mouvement de la souris
+            document.addEventListener('mousemove', showControls);
+            document.addEventListener('touchstart', showControls);
+        });
+
+        // Raccourcis clavier
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'f' || e.key === 'F') {
+                toggleFullscreen();
+            } else if (e.key === 'r' || e.key === 'R') {
+                refreshStream();
+            } else if (e.key === 'c' || e.key === 'C') {
+                toggleChat();
+            }
+        });
+
+        // Mise à jour du temps en direct
+        function updateLiveTime() {
+            const now = new Date();
+            const timeString = now.toLocaleTimeString('fr-FR', { 
+                hour: '2-digit', 
+                minute: '2-digit',
+                second: '2-digit'
+            });
+            document.querySelector('.match-status span:last-child').textContent = timeString;
+        }
+
+        setInterval(updateLiveTime, 1000);
+    </script>
+</body>
+</html>
