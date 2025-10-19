@@ -33,6 +33,7 @@
             background: linear-gradient(135deg, #0c2461, #1e3799);
             min-height: 100vh;
             position: relative;
+            padding: 20px;
         }
 
         /* Header amélioré */
@@ -42,6 +43,8 @@
             padding: 15px 20px;
             border-bottom: 2px solid var(--primary-color);
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            margin-bottom: 20px;
         }
 
         .header-content {
@@ -129,11 +132,12 @@
             background: linear-gradient(135deg, #0088cc, #00aced);
             color: white;
             padding: 15px 20px;
-            margin: 0;
+            margin: 20px 0;
             text-align: center;
             position: relative;
             overflow: hidden;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
         }
 
         .telegram-banner::before {
@@ -212,90 +216,124 @@
             background: #f8f9fa;
         }
 
-        /* Container de streaming */
+        /* Container de streaming de taille moyenne */
         .stream-container {
             position: relative;
             width: 100%;
-            height: calc(100vh - 200px);
+            max-width: 800px;
+            margin: 0 auto;
             background: #000;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
         }
 
         .stream-frame {
             width: 100%;
-            height: 100%;
+            height: 450px;
             border: none;
+            display: block;
+        }
+
+        /* Bannière en bas de l'iframe */
+        .bottom-banner {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            color: white;
+            padding: 15px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bottom-banner::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            transform: rotate(45deg);
+            animation: shine 3s infinite;
+        }
+
+        .bottom-banner-content {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .banner-text {
+            flex: 1;
+            text-align: left;
+        }
+
+        .banner-text h4 {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+            font-weight: 700;
+        }
+
+        .banner-text p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-bottom: 0;
+        }
+
+        .banner-btn {
+            background: white;
+            color: #ee5a24;
+            padding: 10px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            white-space: nowrap;
+        }
+
+        .banner-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            background: #f8f9fa;
         }
 
         /* Watermark */
         .watermark {
             position: absolute;
-            top: 20px;
-            right: 20px;
+            top: 15px;
+            right: 15px;
             z-index: 100;
             display: flex;
             align-items: center;
             gap: 10px;
             background: rgba(0, 0, 0, 0.8);
-            padding: 12px 18px;
-            border-radius: 10px;
+            padding: 8px 15px;
+            border-radius: 8px;
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255,255,255,0.1);
         }
 
         .watermark-logo {
-            height: 30px;
+            height: 25px;
             width: auto;
         }
 
         .watermark-text {
             font-weight: bold;
             color: var(--primary-color);
-            font-size: 1.1rem;
-        }
-
-        /* Contrôles */
-        .controls-overlay {
-            position: absolute;
-            bottom: 20px;
-            left: 0;
-            width: 100%;
-            padding: 20px;
-            background: linear-gradient(0deg, rgba(0,0,0,0.8) 0%, transparent 100%);
-            z-index: 100;
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            opacity: 1;
-            transition: var(--transition);
-        }
-
-        .control-btn {
-            background: linear-gradient(135deg, var(--primary-color), #1565c0);
-            color: white;
-            border: none;
-            padding: 12px 24px;
-            border-radius: 8px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-weight: 600;
-            transition: var(--transition);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-        }
-
-        .control-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
-            background: linear-gradient(135deg, #1976d2, #0d47a1);
+            font-size: 1rem;
         }
 
         /* Bouton retour */
         .back-button {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            z-index: 101;
             background: linear-gradient(135deg, var(--primary-color), #1565c0);
             color: white;
             border: none;
@@ -303,12 +341,13 @@
             border-radius: 8px;
             cursor: pointer;
             text-decoration: none;
-            display: flex;
+            display: inline-flex;
             align-items: center;
             gap: 8px;
             font-weight: 600;
             transition: var(--transition);
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            margin-bottom: 20px;
         }
 
         .back-button:hover {
@@ -358,14 +397,190 @@
             text-shadow: 0 2px 4px rgba(0,0,0,0.5);
         }
 
+        /* Animation de chargement */
+        .loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 50;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(255,255,255,0.3);
+            border-top: 5px solid var(--primary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 15px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Section pourcentages de victoire */
+        .victory-section {
+            max-width: 800px;
+            margin: 30px auto;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .victory-section h3 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 1.4rem;
+        }
+
+        .victory-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .victory-team {
+            text-align: center;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            border: 2px solid transparent;
+            transition: var(--transition);
+        }
+
+        .victory-team:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-5px);
+        }
+
+        .team-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+
+        .victory-logo {
+            width: 50px;
+            height: 50px;
+            background: white;
+            border-radius: 50%;
+            padding: 6px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+
+        .victory-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .victory-name {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: white;
+        }
+
+        .victory-percentage {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin: 10px 0;
+            background: linear-gradient(135deg, #1e88e5, #0d47a1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .victory-label {
+            font-size: 1rem;
+            opacity: 0.8;
+            margin-bottom: 10px;
+        }
+
+        .victory-details {
+            font-size: 0.9rem;
+            opacity: 0.7;
+            line-height: 1.4;
+        }
+
+        .draw-percentage {
+            text-align: center;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+        }
+
+        .draw-percentage .victory-percentage {
+            background: linear-gradient(135deg, #ff9800, #f57c00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Barres de progression */
+        .progress-bars {
+            margin-top: 25px;
+        }
+
+        .progress-item {
+            margin-bottom: 15px;
+        }
+
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+        }
+
+        .progress-bar {
+            height: 8px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            border-radius: 10px;
+            transition: width 1s ease-in-out;
+        }
+
+        .lille-progress {
+            background: linear-gradient(90deg, #1e88e5, #0d47a1);
+            width: 45%;
+        }
+
+        .nantes-progress {
+            background: linear-gradient(90deg, #4caf50, #2e7d32);
+            width: 30%;
+        }
+
+        .draw-progress {
+            background: linear-gradient(90deg, #ff9800, #f57c00);
+            width: 25%;
+        }
+
         /* Responsive */
         @media (max-width: 1024px) {
-            .stream-container {
-                height: calc(100vh - 180px);
+            .stream-frame {
+                height: 400px;
             }
         }
 
         @media (max-width: 768px) {
+            .stream-page {
+                padding: 15px;
+            }
+
             .header-content {
                 flex-direction: column;
                 text-align: center;
@@ -395,24 +610,18 @@
                 font-size: 0.9rem;
             }
 
-            .stream-container {
-                height: calc(100vh - 220px);
+            .stream-frame {
+                height: 350px;
             }
 
-            .controls-overlay {
+            .bottom-banner-content {
                 flex-direction: column;
-                align-items: center;
+                text-align: center;
+                gap: 10px;
             }
 
-            .control-btn {
-                width: 200px;
-                justify-content: center;
-            }
-
-            .watermark {
-                top: 15px;
-                right: 15px;
-                padding: 8px 12px;
+            .banner-text {
+                text-align: center;
             }
 
             .match-teams {
@@ -426,6 +635,15 @@
 
             .team-name {
                 font-size: 1rem;
+            }
+
+            .victory-stats {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .victory-percentage {
+                font-size: 2rem;
             }
         }
 
@@ -467,22 +685,12 @@
                 font-size: 0.8rem;
             }
 
-            .stream-container {
-                height: calc(100vh - 240px);
-            }
-
-            .back-button {
-                top: 15px;
-                left: 15px;
-                padding: 10px 15px;
-                font-size: 0.9rem;
+            .stream-frame {
+                height: 300px;
             }
 
             .watermark {
-                flex-direction: column;
-                gap: 5px;
-                text-align: center;
-                padding: 8px 10px;
+                padding: 6px 10px;
             }
 
             .watermark-text {
@@ -505,36 +713,51 @@
             .vs {
                 font-size: 1rem;
             }
-        }
 
-        /* Animation de chargement */
-        .loading {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
-            z-index: 50;
-        }
+            .bottom-banner {
+                padding: 12px 15px;
+            }
 
-        .spinner {
-            width: 50px;
-            height: 50px;
-            border: 5px solid rgba(255,255,255,0.3);
-            border-top: 5px solid var(--primary-color);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 15px;
-        }
+            .banner-text h4 {
+                font-size: 1.1rem;
+            }
 
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            .banner-text p {
+                font-size: 0.8rem;
+            }
+
+            .banner-btn {
+                padding: 8px 16px;
+                font-size: 0.9rem;
+            }
+
+            .victory-section {
+                padding: 20px 15px;
+            }
+
+            .victory-percentage {
+                font-size: 1.8rem;
+            }
+
+            .victory-logo {
+                width: 40px;
+                height: 40px;
+            }
+
+            .victory-name {
+                font-size: 1.1rem;
+            }
         }
     </style>
 </head>
 <body>
     <div class="stream-page">
+        <!-- Bouton retour -->
+        <a href="index.html" class="back-button">
+            <i class="fas fa-arrow-left"></i>
+            Retour aux matchs
+        </a>
+
         <!-- Header avec match -->
         <header class="stream-header">
             <div class="header-content">
@@ -597,32 +820,10 @@
                 <p>Chargement du streaming...</p>
             </div>
 
-            <!-- Bouton retour -->
-            <a href="index.html" class="back-button">
-                <i class="fas fa-arrow-left"></i>
-                Retour
-            </a>
-
             <!-- Watermark -->
             <div class="watermark">
                 <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMjAiIGN5PSIyMCIgcj0iMjAiIGZpbGw9IiMxZTg4ZTUiLz4KPHBhdGggZD0iTTE0IDE1SDE4VjI1SDE0VjE1WiIgZmlsbD0id2hpdGUiLz4KPHBhdGggZD0iTTIyIDE1SDI2VjI1SDIyVjE1WiIgZmlsbD0id2hpdGUiLz4KPHBhdGggZD0iTTE4IDE3SDIyVjE5SDE4VjE3WiIgZmlsbD0id2hpdGUiLz4KPC9zdmc+Cg==" alt="FootSpace Logo" class="watermark-logo">
                 <span class="watermark-text">FootSpace</span>
-            </div>
-
-            <!-- Contrôles -->
-            <div class="controls-overlay" id="controls">
-                <button class="control-btn" onclick="toggleFullscreen()">
-                    <i class="fas fa-expand"></i>
-                    Plein écran
-                </button>
-                <button class="control-btn" onclick="refreshStream()">
-                    <i class="fas fa-redo"></i>
-                    Actualiser
-                </button>
-                <button class="control-btn" onclick="toggleChat()">
-                    <i class="fas fa-comments"></i>
-                    Chat
-                </button>
             </div>
 
             <!-- Iframe de streaming -->
@@ -637,98 +838,122 @@
                 id="streamFrame"
                 onload="document.getElementById('loading').style.display = 'none'">
             </iframe>
+
+            <!-- Bannière en bas de l'iframe -->
+            <div class="bottom-banner">
+                <div class="bottom-banner-content">
+                    <div class="banner-text">
+                        <h4>📱 Restez connecté!</h4>
+                        <p>Rejoignez notre communauté Telegram pour ne rien manquer</p>
+                    </div>
+                    <a href="https://t.me/foot_space_of" target="_blank" class="banner-btn">
+                        <i class="fab fa-telegram"></i>
+                        Rejoindre Telegram
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section pourcentages de victoire -->
+        <div class="victory-section">
+            <h3>📊 Pronostics du Match</h3>
+            
+            <div class="victory-stats">
+                <div class="victory-team">
+                    <div class="team-header">
+                        <div class="victory-logo">
+                            <img src="https://upload.wikimedia.org/wikipedia/fr/thumb/7/74/Logo_Lille_OSC_2018.svg/1200px-Logo_Lille_OSC_2018.svg.png" alt="Lille">
+                        </div>
+                        <div class="victory-name">Lille</div>
+                    </div>
+                    <div class="victory-percentage">45%</div>
+                    <div class="victory-label">Chances de Victoire</div>
+                    <div class="victory-details">
+                        7 victoires sur 10 derniers matchs à domicile
+                    </div>
+                </div>
+
+                <div class="draw-percentage">
+                    <div class="victory-percentage">25%</div>
+                    <div class="victory-label">Match Nul</div>
+                    <div class="victory-details">
+                        3 matchs nuls sur 10 dernières rencontres
+                    </div>
+                </div>
+
+                <div class="victory-team">
+                    <div class="team-header">
+                        <div class="victory-logo">
+                            <img src="https://upload.wikimedia.org/wikipedia/fr/thumb/6/6e/FC_Nantes_%28logo%29.svg/1200px-FC_Nantes_%28logo%29.svg.png" alt="Nantes">
+                        </div>
+                        <div class="victory-name">Nantes</div>
+                    </div>
+                    <div class="victory-percentage">30%</div>
+                    <div class="victory-label">Chances de Victoire</div>
+                    <div class="victory-details">
+                        2 victoires sur 10 derniers matchs à l'extérieur
+                    </div>
+                </div>
+            </div>
+
+            <!-- Barres de progression -->
+            <div class="progress-bars">
+                <div class="progress-item">
+                    <div class="progress-label">
+                        <span>Lille</span>
+                        <span>45%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill lille-progress"></div>
+                    </div>
+                </div>
+                <div class="progress-item">
+                    <div class="progress-label">
+                        <span>Match Nul</span>
+                        <span>25%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill draw-progress"></div>
+                    </div>
+                </div>
+                <div class="progress-item">
+                    <div class="progress-label">
+                        <span>Nantes</span>
+                        <span>30%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill nantes-progress"></div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
     <script>
-        // Fonction pour le plein écran
-        function toggleFullscreen() {
-            const elem = document.documentElement;
-            
-            if (!document.fullscreenElement) {
-                if (elem.requestFullscreen) {
-                    elem.requestFullscreen();
-                } else if (elem.webkitRequestFullscreen) {
-                    elem.webkitRequestFullscreen();
-                } else if (elem.msRequestFullscreen) {
-                    elem.msRequestFullscreen();
-                }
-            } else {
-                if (document.exitFullscreen) {
-                    document.exitFullscreen();
-                } else if (document.webkitExitFullscreen) {
-                    document.webkitExitFullscreen();
-                } else if (document.msExitFullscreen) {
-                    document.msExitFullscreen();
-                }
-            }
-        }
-
-        // Fonction pour actualiser le stream
-        function refreshStream() {
-            const iframe = document.getElementById('streamFrame');
-            const loading = document.getElementById('loading');
-            
-            loading.style.display = 'block';
-            const currentSrc = iframe.src;
-            iframe.src = '';
-            setTimeout(() => {
-                iframe.src = currentSrc;
-            }, 100);
-        }
-
-        // Fonction pour le chat (placeholder)
-        function toggleChat() {
-            alert('Fonction chat à implémenter');
-        }
-
-        // Masquer les contrôles après un certain temps
-        let controlsTimeout;
-        function hideControls() {
-            const controls = document.getElementById('controls');
-            controls.style.opacity = '0';
-        }
-
-        function showControls() {
-            const controls = document.getElementById('controls');
-            controls.style.opacity = '1';
-            
-            clearTimeout(controlsTimeout);
-            controlsTimeout = setTimeout(hideControls, 3000);
-        }
-
-        // Initialiser le masquage automatique
-        document.addEventListener('DOMContentLoaded', function() {
-            controlsTimeout = setTimeout(hideControls, 3000);
-            
-            // Montrer les contrôles au mouvement de la souris
-            document.addEventListener('mousemove', showControls);
-            document.addEventListener('touchstart', showControls);
-        });
-
-        // Raccourcis clavier
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'f' || e.key === 'F') {
-                toggleFullscreen();
-            } else if (e.key === 'r' || e.key === 'R') {
-                refreshStream();
-            } else if (e.key === 'c' || e.key === 'C') {
-                toggleChat();
-            }
-        });
-
         // Mise à jour du temps en direct
         function updateLiveTime() {
             const now = new Date();
             const timeString = now.toLocaleTimeString('fr-FR', { 
                 hour: '2-digit', 
-                minute: '2-digit',
-                second: '2-digit'
+                minute: '2-digit'
             });
-            document.querySelector('.match-status span:last-child').textContent = timeString;
+            // Mettre à jour l'heure dans les détails du match
+            const timeElements = document.querySelectorAll('.match-details span');
+            if (timeElements[2]) {
+                timeElements[2].textContent = timeString;
+            }
         }
 
-        setInterval(updateLiveTime, 1000);
+        setInterval(updateLiveTime, 60000); // Mise à jour chaque minute
+
+        // Animation des barres de progression au chargement
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(() => {
+                document.querySelectorAll('.progress-fill').forEach(bar => {
+                    bar.style.width = bar.style.width;
+                });
+            }, 500);
+        });
     </script>
 </body>
 </html>
