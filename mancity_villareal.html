@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FootSpace - Barcelone vs Olympiacos</title>
+    <title>FootSpace - Man City vs Villa Real</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* Même CSS que les pages précédentes */
         :root {
             --primary-color: #1e88e5;
             --secondary-color: #e53935;
@@ -36,7 +37,6 @@
             padding: 20px;
         }
 
-        /* Header amélioré */
         .stream-header {
             background: rgba(18, 18, 18, 0.95);
             backdrop-filter: blur(10px);
@@ -127,7 +127,6 @@
             }
         }
 
-        /* Bannière Telegram améliorée */
         .telegram-banner {
             background: linear-gradient(135deg, #0088cc, #00aced);
             color: white;
@@ -216,7 +215,6 @@
             background: #f8f9fa;
         }
 
-        /* Container de streaming */
         .stream-container {
             position: relative;
             width: 100%;
@@ -228,7 +226,6 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
         }
 
-        /* Placeholder pour l'embed */
         .embed-placeholder {
             width: 100%;
             height: 600px;
@@ -262,7 +259,6 @@
             line-height: 1.6;
         }
 
-        /* Bannière en bas de l'iframe */
         .bottom-banner {
             background: linear-gradient(135deg, #ff6b6b, #ee5a24);
             color: white;
@@ -332,7 +328,6 @@
             background: #f8f9fa;
         }
 
-        /* Watermark */
         .watermark {
             position: absolute;
             top: 15px;
@@ -359,7 +354,6 @@
             font-size: 1rem;
         }
 
-        /* Bouton retour */
         .back-button {
             background: linear-gradient(135deg, var(--primary-color), #1565c0);
             color: white;
@@ -382,7 +376,6 @@
             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
         }
 
-        /* Informations du match */
         .match-teams {
             display: flex;
             align-items: center;
@@ -424,7 +417,6 @@
             text-shadow: 0 2px 4px rgba(0,0,0,0.5);
         }
 
-        /* Section conseils */
         .tips-section {
             max-width: 1000px;
             margin: 30px auto;
@@ -504,82 +496,61 @@
         }
 
         /* Responsive */
-        @media (max-width: 1024px) {
-            .embed-placeholder {
-                height: 500px;
-            }
-        }
-
         @media (max-width: 768px) {
             .stream-page {
                 padding: 15px;
             }
-
             .header-content {
                 flex-direction: column;
                 text-align: center;
                 gap: 10px;
             }
-
             .logo {
                 justify-content: center;
             }
-
             .match-title {
                 font-size: 1.2rem;
             }
-
             .telegram-content {
                 flex-direction: column;
                 text-align: center;
                 gap: 10px;
             }
-
             .telegram-text {
                 max-width: 100%;
             }
-
             .telegram-btn {
                 padding: 10px 20px;
                 font-size: 0.9rem;
             }
-
             .embed-placeholder {
                 height: 400px;
                 padding: 30px 20px;
             }
-
             .placeholder-icon {
                 font-size: 3rem;
             }
-
             .placeholder-title {
                 font-size: 1.5rem;
             }
-
             .bottom-banner-content {
                 flex-direction: column;
                 text-align: center;
                 gap: 10px;
             }
-
             .banner-text {
                 text-align: center;
             }
-
             .match-teams {
                 gap: 15px;
             }
-
             .team-logo {
                 width: 35px;
                 height: 35px;
             }
-
             .team-name {
                 font-size: 1rem;
             }
-
             .tips-grid {
                 grid-template-columns: 1fr;
                 gap: 15px;
@@ -590,103 +561,79 @@
             .stream-header {
                 padding: 10px 15px;
             }
-
             .logo img {
                 height: 35px;
             }
-
             .logo-text {
                 font-size: 1.3rem;
             }
-
             .match-title {
                 font-size: 1.1rem;
             }
-
             .match-details {
                 flex-direction: column;
                 gap: 5px;
             }
-
             .telegram-banner {
                 padding: 12px 15px;
             }
-
             .telegram-icon {
                 font-size: 1.5rem;
             }
-
             .telegram-text h3 {
                 font-size: 1.1rem;
             }
-
             .telegram-text p {
                 font-size: 0.8rem;
             }
-
             .embed-placeholder {
                 height: 350px;
                 padding: 20px 15px;
             }
-
             .placeholder-icon {
                 font-size: 2.5rem;
             }
-
             .placeholder-title {
                 font-size: 1.3rem;
             }
-
             .placeholder-text {
                 font-size: 1rem;
             }
-
             .watermark {
                 padding: 6px 10px;
             }
-
             .watermark-text {
                 font-size: 0.9rem;
             }
-
             .match-teams {
                 gap: 10px;
             }
-
             .team {
                 flex-direction: column;
                 gap: 5px;
             }
-
             .team-name {
                 font-size: 0.9rem;
             }
-
             .vs {
                 font-size: 1rem;
             }
-
             .bottom-banner {
                 padding: 12px 15px;
             }
-
             .banner-text h4 {
                 font-size: 1.1rem;
             }
-
             .banner-text p {
                 font-size: 0.8rem;
             }
-
             .banner-btn {
                 padding: 8px 16px;
                 font-size: 0.9rem;
             }
-
             .tips-section {
                 padding: 20px 15px;
             }
-
             .tip-icon {
                 font-size: 2rem;
             }
@@ -705,7 +652,7 @@
         <header class="stream-header">
             <div class="header-content">
                 <div class="logo">
-                    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMjAiIGN5PSIyMCIgcj0iMjAiIGZpbGw9IiMxZTg4ZTUiLz4KPHBhdGggZD0iTTE0IDE1SDE4VjI1SDE0VjE1WiIgZmlsbD0id2hpdGUiLz4KPHBhdGggZD0iTTIyIDE1SDI2VjI1SDIyVjE1WiIgZmlsbD0id2hpdGUiLz4KPHBhdGggZD0iTTE4IDE3SDIyVjE5SDE4VjE3WiIgZmlsbD0id2hpdGUiLz4KPC9zdmc+Cg==" alt="FootSpace Logo">
+                    <img src="logo2.png" alt="FootSpace Logo">
                     <span class="logo-text">FootSpace</span>
                 </div>
                 
@@ -714,16 +661,16 @@
                     <div class="match-teams">
                         <div class="team">
                             <div class="team-logo">
-                                <img src="https://upload.wikimedia.org/wikipedia/fr/thumb/a/a1/Logo_FC_Barcelona.svg/1200px-Logo_FC_Barcelona.svg.png" alt="Barcelone">
+                                <img src="https://upload.wikimedia.org/wikipedia/fr/thumb/e/eb/Manchester_City_FC_badge.svg/1200px-Manchester_City_FC_badge.svg.png" alt="Man City">
                             </div>
-                            <span class="team-name">Barcelone</span>
+                            <span class="team-name">Man City</span>
                         </div>
                         <div class="vs">VS</div>
                         <div class="team">
                             <div class="team-logo">
-                                <img src="https://upload.wikimedia.org/wikipedia/fr/thumb/5/5e/Olympiakos_Le_Pir%C3%A9e_%282017%29.svg/1200px-Olympiakos_Le_Pir%C3%A9e_%282017%29.svg.png" alt="Olympiacos">
+                                <img src="https://upload.wikimedia.org/wikipedia/fr/thumb/7/73/Villarreal_CF_logo.svg/1200px-Villarreal_CF_logo.svg.png" alt="Villa Real">
                             </div>
-                            <span class="team-name">Olympiacos</span>
+                            <span class="team-name">Villa Real</span>
                         </div>
                     </div>
                     <div class="match-details">
@@ -732,9 +679,9 @@
                             <span>EN DIRECT</span>
                         </div>
                         <span>•</span>
-                        <span>17:45</span>
+                        <span>20:00</span>
                         <span>•</span>
-                        <span>Camp Nou</span>
+                        <span>Etihad Stadium</span>
                     </div>
                 </div>
             </div>
@@ -762,7 +709,7 @@
                 <i class="fas fa-video placeholder-icon"></i>
                 <div class="placeholder-title">Streaming en direct</div>
                 <div class="placeholder-text">
-                    L'embed du streaming sera intégré ici prochainement. En attendant, préparez-vous pour un match passionnant entre Barcelone et Olympiacos !
+                    L'embed du streaming sera intégré ici prochainement. En attendant, préparez-vous pour un match passionnant entre Manchester City et Villa Real !
                 </div>
             </div>
 
