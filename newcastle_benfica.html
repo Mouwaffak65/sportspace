@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FootSpace - Newcastle vs Benfica</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Même CSS que la page précédente */
+        :root {
+            --primary-color: #1e88e5;
+            --secondary-color: #e53935;
+            --dark-color: #121212;
+            --light-color: #f5f5f5;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0c2461, #1e3799);
+            color: white;
+            min-height: 100vh;
+        }
+
+        .stream-page {
+            background: linear-gradient(135deg, #0c2461, #1e3799);
+            min-height: 100vh;
+            position: relative;
+            padding: 20px;
+        }
+
+        .stream-header {
+            background: rgba(18, 18, 18, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px 20px;
+            border-bottom: 2px solid var(--primary-color);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            margin-bottom: 20px;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo img {
+            height: 45px;
+            width: auto;
+            border-radius: 8px;
+        }
+
+        .logo-text {
+            font-size: 1.6rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .match-info {
+            text-align: center;
+            flex-grow: 1;
+        }
+
+        .match-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+            color: white;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .match-details {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .match-status {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--secondary-color);
+            font-weight: 600;
+        }
+
+        .live-indicator {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: var(--secondary-color);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(229, 57, 53, 0.7);
+            }
+            70% {
+                transform: scale(1);
+                box-shadow: 0 0 0 10px rgba(229, 57, 53, 0);
+            }
+            100% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(229, 57, 53, 0);
+            }
+        }
+
+        .telegram-banner {
+            background: linear-gradient(135deg, #0088cc, #00aced);
+            color: white;
+            padding: 15px 20px;
+            margin: 20px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
+        }
+
+        .telegram-banner::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            transform: rotate(45deg);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        .telegram-content {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .telegram-icon {
+            font-size: 2rem;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        .telegram-text {
+            flex: 1;
+            max-width: 500px;
+        }
+
+        .telegram-text h3 {
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+            font-weight: 700;
+        }
+
+        .telegram-text p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-bottom: 0;
+        }
+
+        .telegram-btn {
+            background: white;
+            color: #0088cc;
+            padding: 12px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            white-space: nowrap;
+        }
+
+        .telegram-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            background: #f8f9fa;
+        }
+
+        .stream-container {
+            position: relative;
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+            background: #000;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .embed-placeholder {
+            width: 100%;
+            height: 600px;
+            background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .placeholder-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+
+        .placeholder-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+
+        .placeholder-text {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 600px;
+            line-height: 1.6;
+        }
+
+        .bottom-banner {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            color: white;
+            padding: 15px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bottom-banner::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            transform: rotate(45deg);
+            animation: shine 3s infinite;
+        }
+
+        .bottom-banner-content {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .banner-text {
+            flex: 1;
+            text-align: left;
+        }
+
+        .banner-text h4 {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+            font-weight: 700;
+        }
+
+        .banner-text p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-bottom: 0;
+        }
+
+        .banner-btn {
+            background: white;
+            color: #ee5a24;
+            padding: 10px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            white-space: nowrap;
+        }
+
+        .banner-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            background: #f8f9fa;
+        }
+
+        .watermark {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 8px 15px;
+            border-radius: 8px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .watermark-logo {
+            height: 25px;
+            width: auto;
+        }
+
+        .watermark-text {
+            font-weight: bold;
+            color: var(--primary-color);
+            font-size: 1rem;
+        }
+
+        .back-button {
+            background: linear-gradient(135deg, var(--primary-color), #1565c0);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            margin-bottom: 20px;
+        }
+
+        .back-button:hover {
+            transform: translateX(-5px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .match-teams {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+            margin: 10px 0;
+        }
+
+        .team {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .team-logo {
+            width: 40px;
+            height: 40px;
+            background: white;
+            border-radius: 50%;
+            padding: 5px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        .team-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .team-name {
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .vs {
+            font-weight: bold;
+            color: var(--secondary-color);
+            font-size: 1.2rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .tips-section {
+            max-width: 1000px;
+            margin: 30px auto;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .tips-section h3 {
+            color: var(--primary-color);
+            margin-bottom: 25px;
+            text-align: center;
+            font-size: 1.8rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .tip-card {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 25px;
+            border-radius: 12px;
+            border-left: 4px solid var(--primary-color);
+            transition: var(--transition);
+        }
+
+        .tip-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .tip-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+
+        .tip-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: white;
+        }
+
+        .tip-content {
+            font-size: 0.95rem;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        .important-note {
+            background: linear-gradient(135deg, rgba(229, 57, 53, 0.3), rgba(198, 40, 40, 0.3));
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 25px;
+            border-left: 4px solid var(--secondary-color);
+        }
+
+        .note-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--secondary-color);
+        }
+
+        .note-content {
+            font-size: 0.95rem;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .stream-page {
+                padding: 15px;
+            }
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+            }
+            .logo {
+                justify-content: center;
+            }
+            .match-title {
+                font-size: 1.2rem;
+            }
+            .telegram-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+            }
+            .telegram-text {
+                max-width: 100%;
+            }
+            .telegram-btn {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+            .embed-placeholder {
+                height: 400px;
+                padding: 30px 20px;
+            }
+            .placeholder-icon {
+                font-size: 3rem;
+            }
+            .placeholder-title {
+                font-size: 1.5rem;
+            }
+            .bottom-banner-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+            }
+            .banner-text {
+                text-align: center;
+            }
+            .match-teams {
+                gap: 15px;
+            }
+            .team-logo {
+                width: 35px;
+                height: 35px;
+            }
+            .team-name {
+                font-size: 1rem;
+            }
+            .tips-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .stream-header {
+                padding: 10px 15px;
+            }
+            .logo img {
+                height: 35px;
+            }
+            .logo-text {
+                font-size: 1.3rem;
+            }
+            .match-title {
+                font-size: 1.1rem;
+            }
+            .match-details {
+                flex-direction: column;
+                gap: 5px;
+            }
+            .telegram-banner {
+                padding: 12px 15px;
+            }
+            .telegram-icon {
+                font-size: 1.5rem;
+            }
+            .telegram-text h3 {
+                font-size: 1.1rem;
+            }
+            .telegram-text p {
+                font-size: 0.8rem;
+            }
+            .embed-placeholder {
+                height: 350px;
+                padding: 20px 15px;
+            }
+            .placeholder-icon {
+                font-size: 2.5rem;
+            }
+            .placeholder-title {
+                font-size: 1.3rem;
+            }
+            .placeholder-text {
+                font-size: 1rem;
+            }
+            .watermark {
+                padding: 6px 10px;
+            }
+            .watermark-text {
+                font-size: 0.9rem;
+            }
+            .match-teams {
+                gap: 10px;
+            }
+            .team {
+                flex-direction: column;
+                gap: 5px;
+            }
+            .team-name {
+                font-size: 0.9rem;
+            }
+            .vs {
+                font-size: 1rem;
+            }
+            .bottom-banner {
+                padding: 12px 15px;
+            }
+            .banner-text h4 {
+                font-size: 1.1rem;
+            }
+            .banner-text p {
+                font-size: 0.8rem;
+            }
+            .banner-btn {
+                padding: 8px 16px;
+                font-size: 0.9rem;
+            }
+            .tips-section {
+                padding: 20px 15px;
+            }
+            .tip-icon {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="stream-page">
+        <!-- Bouton retour -->
+        <a href="index.html" class="back-button">
+            <i class="fas fa-arrow-left"></i>
+            Retour aux matchs
+        </a>
+
+        <!-- Header avec match -->
+        <header class="stream-header">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="logo2.png" alt="FootSpace Logo">
+                    <span class="logo-text"></span>
+                </div>
+                
+                <div class="match-info">
+                    <h1 class="match-title">LIVE - Ligue des Champions</h1>
+                    <div class="match-teams">
+                        <div class="team">
+                            <div class="team-logo">
+                                <img src="https://upload.wikimedia.org/wikipedia/fr/thumb/3/35/Logo_Newcastle_United.svg/1200px-Logo_Newcastle_United.svg.png" alt="Newcastle">
+                            </div>
+                            <span class="team-name">Newcastle</span>
+                        </div>
+                        <div class="vs">VS</div>
+                        <div class="team">
+                            <div class="team-logo">
+                                <img src="https://upload.wikimedia.org/wikipedia/fr/thumb/4/40/Logo_SL_Benfica_%282022%29.svg/1200px-Logo_SL_Benfica_%282022%29.svg.png" alt="Benfica">
+                            </div>
+                            <span class="team-name">Benfica</span>
+                        </div>
+                    </div>
+                    <div class="match-details">
+                        <div class="match-status">
+                            <div class="live-indicator"></div>
+                            <span>EN DIRECT</span>
+                        </div>
+                        <span>•</span>
+                        <span>20:00</span>
+                        <span>•</span>
+                        <span>St James' Park</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Bannière Telegram -->
+        <div class="telegram-banner">
+            <div class="telegram-content">
+                <i class="fab fa-telegram telegram-icon"></i>
+                <div class="telegram-text">
+                    <h3>Rejoignez FootSpace sur Telegram!</h3>
+                    <p>Streamings en direct, résumés exclusifs et communautés de fans</p>
+                </div>
+                <a href="https://t.me/foot_space_of" target="_blank" class="telegram-btn">
+                    <i class="fab fa-telegram"></i>
+                    Nous Rejoindre
+                </a>
+            </div>
+        </div>
+
+        <!-- Container de streaming -->
+        <div class="stream-container">
+            <!-- Placeholder pour l'embed -->
+            <div class="embed-placeholder">
+                <i class="fas fa-video placeholder-icon"></i>
+                <div class="placeholder-title">Streaming en direct</div>
+                <div class="placeholder-text">
+                    L'embed du streaming sera intégré ici prochainement. En attendant, préparez-vous pour un match passionnant entre Newcastle et Benfica !
+                </div>
+            </div>
+
+            <!-- Watermark -->
+            <div class="watermark">
+                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMjAiIGN5PSIyMCIgcj0iMjAiIGZpbGw9IiMxZTg4ZTUiLz4KPHBhdGggZD0iTTE0IDE1SDE4VjI1SDE0VjE1WiIgZmlsbD0id2hpdGUiLz4KPHBhdGggZD0iTTIyIDE1SDI2VjI1SDIyVjE1WiIgZmlsbD0id2hpdGUiLz4KPHBhdGggZD0iTTE4IDE3SDIyVjE5SDE4VjE3WiIgZmlsbD0id2hpdGUiLz4KPC9zdmc+Cg==" alt="FootSpace Logo" class="watermark-logo">
+                <span class="watermark-text">FootSpace</span>
+            </div>
+
+            <!-- Bannière en bas de l'iframe -->
+            <div class="bottom-banner">
+                <div class="bottom-banner-content">
+                    <div class="banner-text">
+                        <h4>📱 Restez connecté!</h4>
+                        <p>Rejoignez notre communauté Telegram pour ne rien manquer</p>
+                    </div>
+                    <a href="https://t.me/foot_space_of" target="_blank" class="banner-btn">
+                        <i class="fab fa-telegram"></i>
+                        Rejoindre Telegram
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section conseils -->
+        <div class="tips-section">
+            <h3>💡 Conseils pour suivre le match</h3>
+            
+            <div class="tips-grid">
+                <div class="tip-card">
+                    <i class="fas fa-sync-alt tip-icon"></i>
+                    <div class="tip-title">Redirection automatique</div>
+                    <div class="tip-content">
+                        Après avoir cliqué sur "Suivre", vous serez redirigé vers une autre page. Ne vous inquiétez pas, c'est normal ! 
+                        Retournez en arrière et recliquez sur le bouton - cela fonctionnera parfaitement.
+                    </div>
+                </div>
+
+                <div class="tip-card">
+                    <i class="fas fa-wifi tip-icon"></i>
+                    <div class="tip-title">Connexion stable</div>
+                    <div class="tip-content">
+                        Assurez-vous d'avoir une connexion internet stable pour une expérience de streaming optimale. 
+                        Évitez les réseaux Wi-Fi publics surchargés.
+                    </div>
+                </div>
+
+                <div class="tip-card">
+                    <i class="fas fa-mobile-alt tip-icon"></i>
+                    <div class="tip-title">Mode plein écran</div>
+                    <div class="tip-content">
+                        Pour une meilleure expérience visuelle, activez le mode plein écran une fois le streaming chargé. 
+                        Profitez du match comme si vous y étiez !
+                    </div>
+                </div>
+
+                <div class="tip-card">
+                    <i class="fas fa-bell tip-icon"></i>
+                    <div class="tip-title">Notifications</div>
+                    <div class="tip-content">
+                        Rejoignez notre canal Telegram pour recevoir des notifications en direct sur les buts, 
+                        les cartons et les moments importants du match.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Note importante -->
+            <div class="important-note">
+                <div class="note-title">⚠️ Important à savoir</div>
+                <div class="note-content">
+                    <strong>Si vous êtes redirigé vers une autre page :</strong> C'est un processus normal de sécurité. 
+                    Simplement retournez en arrière (bouton "Retour" de votre navigateur) et recliquez sur "Suivre le match". 
+                    La deuxième tentative fonctionne toujours ! Cette mesure protège notre streaming contre les bots.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Mise à jour du temps en direct
+        function updateLiveTime() {
+            const now = new Date();
+            const timeString = now.toLocaleTimeString('fr-FR', { 
+                hour: '2-digit', 
+                minute: '2-digit'
+            });
+            // Mettre à jour l'heure dans les détails du match
+            const timeElements = document.querySelectorAll('.match-details span');
+            if (timeElements[2]) {
+                timeElements[2].textContent = timeString;
+            }
+        }
+
+        setInterval(updateLiveTime, 60000); // Mise à jour chaque minute
+    </script>
+</body>
+</html>
